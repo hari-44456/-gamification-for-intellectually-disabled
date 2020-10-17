@@ -1,20 +1,45 @@
 import React from 'react';
+import { Button, Card, CardContent, CardMedia, makeStyles, Typography } from '@material-ui/core';
 
-import './cards-style.css'
 import { Link } from 'react-router-dom';
+import { Col, Row } from 'react-bootstrap';
 
-const Card=props=>{
+const useStyles = makeStyles((theme) => ({
+    card: {
+        transition: 'transform 0.3s',
+        '&:hover': {
+            transform: 'scale(1.1)'
+        },
+        margin: theme.spacing(2),
+    },
+    media: {
+        height: 0,
+        paddingTop: '56.25%',
+    },
+}))
+
+const CardsUI = (props) =>{
+    const classes = useStyles();
     return (
-    <div className='card text-center'>
-        <div className='overflow' >
-            <img src={props.imgsrc} alt="Image1" className='card-img-top'/>
-         </div>
-         <div className="card-body text-dark">
-         <h4 className='card-title'>{props.title}</h4>
-            <p className='card-text text-secondary'>Game that tells about you</p>
-        <button ><Link to={props.path}> Play</Link></button>
-        </div>
-
-    </div>);
+        <Card raised className={classes.card}>
+            <CardMedia className={classes.media} image={props.imgsrc}/>
+            <CardContent>
+                <Row>
+                    <Col align='center'>
+                        <Typography variant="h4">
+                            {props.title}
+                        </Typography>
+                    </Col>
+                </Row>
+                <Typography variant="body2" color="textSecondary" component="p">
+                Game that tells about you
+                </Typography>
+                <Button variant='outlined'>
+                    <Link to={props.path}>Play Now</Link>
+                </Button>
+            </CardContent>
+        </Card>
+    );
  };
-export default Card;
+
+ export default CardsUI;
