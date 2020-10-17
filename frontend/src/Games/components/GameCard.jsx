@@ -31,8 +31,8 @@ const GameCard = (props) =>{
                         </Typography>
                     </Col>
                 </Row>
-                <Typography variant="body2" color="textSecondary" component="p">
-                Game that tells about you
+                <Typography variant="body1" color="textSecondary">
+                    Game that tells about you
                 </Typography>
                 <Button variant='outlined'>
                     <Link to={props.path}>Play Now</Link>
