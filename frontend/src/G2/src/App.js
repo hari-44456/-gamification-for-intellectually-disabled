@@ -88,7 +88,7 @@ const App = () => {
       setFlagButtonClick(false);
     }
 
-  }, [tooHighOrLow, guessInput, flagButtonClick, trackSelection, trackCurrentHighScore])
+  }, [tooHighOrLow, guessInput, flagButtonClick, trackSelection, trackCurrentHighScore, optionSelected])
 
 
   // Standard level begins
