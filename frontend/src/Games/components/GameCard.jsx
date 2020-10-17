@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             transform: 'scale(1.1)'
         },
-        margin: theme.spacing(2),
+        margin: theme.spacing(3),
     },
     media: {
         height: 0,
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const CardsUI = (props) =>{
+const GameCard = (props) =>{
     const classes = useStyles();
     return (
         <Card raised className={classes.card}>
@@ -42,4 +42,4 @@ const CardsUI = (props) =>{
     );
  };
 
- export default CardsUI;
+ export default GameCard;

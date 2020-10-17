@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card/Cards';
+import Games from './Games/pages/Games';
 import G4 from './G4/src/index';
 import './index.css';
 import MuiTheme from './G1/src/index';
@@ -17,15 +17,15 @@ function App() {
 	return (
 		<div className="App">
 			<Switch>
-					<Route path="/" component={Card} exact />
+					<Route exact path="/"  component={Games}/>
 					<Route path="/G1" component={MuiTheme} />
 					<Route path="/G2" component={Index}/>
 					<Route path="/G4" component={G4}/>
-					<Route exact path='/auth/login/student/' component={StudentLogin} />
+					<Route exact path='/login/student/' component={StudentLogin} />
 
-					<Route exact path='/auth/login/admin/' component={AdminLogin} />
+					<Route exact path='/login/admin/' component={AdminLogin} />
 
-					<Route exact path='/auth/login/teacher/' component={TeacherLogin} />
+					<Route exact path='/login/teacher/' component={TeacherLogin} />
 
 					<Route exact path='/register/student' component={StudentRegister} />
 
