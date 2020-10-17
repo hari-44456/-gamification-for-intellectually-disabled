@@ -11,7 +11,7 @@ import img4 from '../assert/4.jpg';
 class Cards extends Component{
     render(){
         return(
-            <div>
+            <React.Fragment>
                 <h1>Student DashBoard</h1>
                 <Container>
                     <Row>
@@ -29,7 +29,7 @@ class Cards extends Component{
                         </Col>
                     </Row>
                 </Container>
-            </div>
+            </React.Fragment>
         );
     }
 }
