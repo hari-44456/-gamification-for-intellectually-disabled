@@ -4,10 +4,10 @@ import {Row,Col} from 'react-bootstrap';
 
 import CardsUI from './CardsUI';
 
-import img1 from '../assert/1.jpg';
-import img2 from '../assert/2.jpg';
-import img3 from '../assert/3.jpg';
-import img4 from '../assert/4.jpg';
+import img1 from '../assets/img/1.jpg';
+import img2 from '../assets/img/2.jpg';
+import img3 from '../assets/img/3.jpg';
+import img4 from '../assets/img/4.jpg';
 class Cards extends Component{
     render(){
         return(
