@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
-ReactDOM.render(
-  	<BrowserRouter>
-        <App />
-    </BrowserRouter>,
-  document.getElementById('root')
-);
+import { TokenProvider } from './TokenContext';
 
+ReactDOM.render(
+	<BrowserRouter>
+		<TokenProvider>
+			<App />
+		</TokenProvider>
+	</BrowserRouter>,
+	document.getElementById('root'),
+);
 
 serviceWorker.unregister();

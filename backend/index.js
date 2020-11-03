@@ -13,7 +13,11 @@ mongoose.connect(
 );
 
 app.use(express.json());
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin: true }));
+
+app.get('/hari', (req, res) => {
+	res.status(200).send('Api is live...');
+});
 
 const studentAuthRoute = require('./routes/studentAuth');
 const teacherAuthRoute = require('./routes/teacherAuth');
@@ -26,4 +30,4 @@ app.use('/api/auth/teacher', teacherAuthRoute);
 app.use('/api/auth/admin', adminAuthRoute);
 app.use('/api/auth/posts', postroute);
 
-app.listen(5000, () => console.log('running on 5000...'));
+app.listen(process.env.PORT || 5000, () => console.log('running on 5000...'));

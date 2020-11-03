@@ -49,8 +49,12 @@ router.post('/login', (req, res) => {
 		return res.status(400).send('Data Incomplete!!!');
 
 	Student.findOne({ username: req.body.username }, async (err, user) => {
-		if (err) return res.send('Error occured while login route');
-		if (!user) return res.send('Email does not exists!!!');
+		if (err) {
+			// return res.send(400, { error: 'Email does not exists!!!' });
+			// res.statusCode = 400;
+			return res.status(400).send('Error occured while login route');
+		}
+		if (!user) return res.status(400).send('Email does not exists!!!');
 
 		const validPassword = await bcrypt.compare(
 			req.body.password,
