@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+
 # Gamification For Intellectually Disabled
 
 This project works on use of gamification for intellectually disabled so that they can improve.
@@ -72,4 +73,5 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
->>>>>>> prathamesh
+
+> > > > > > > prathamesh
