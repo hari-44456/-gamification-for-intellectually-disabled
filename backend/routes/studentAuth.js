@@ -50,7 +50,7 @@ router.post('/login', (req, res) => {
 
 	Student.findOne({ username: req.body.username }, async (err, user) => {
 		if (err) return res.send('Error occured while login route');
-		if (!user) return res.status(400).send('Email does not exists!!!');
+		if (!user) return res.send('Email does not exists!!!');
 
 		const validPassword = await bcrypt.compare(
 			req.body.password,

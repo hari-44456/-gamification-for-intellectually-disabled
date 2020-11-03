@@ -13,7 +13,7 @@ mongoose.connect(
 );
 
 app.use(express.json());
-app.use(cors({ origin: true }));
+app.use(cors({ origin: true, credentials: true }));
 
 const studentAuthRoute = require('./routes/studentAuth');
 const teacherAuthRoute = require('./routes/teacherAuth');
