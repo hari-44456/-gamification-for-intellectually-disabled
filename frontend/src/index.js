@@ -8,11 +8,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { TokenProvider } from './TokenContext';
 
 ReactDOM.render(
-	<BrowserRouter>
-		<TokenProvider>
+	<TokenProvider>
+		<BrowserRouter>
 			<App />
-		</TokenProvider>
-	</BrowserRouter>,
+		</BrowserRouter>
+	</TokenProvider>,
 	document.getElementById('root'),
 );
 
