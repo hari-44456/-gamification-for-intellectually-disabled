@@ -97,7 +97,8 @@ export default function LoginForm({ type }) {
 			})
 			.catch((err) => {
 				// console.log('catch', err.response.data);
-				setLoginError(err);
+				setLoginError(err.response.data);
+				
 			});
 	};
 

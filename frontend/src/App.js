@@ -5,7 +5,7 @@ import './index.css';
 import MuiTheme from './G1/src/index';
 import Index from './G2/src/index';
 import { Route, Switch } from 'react-router-dom';
-
+import G3 from './G3/src/index';
 import StudentLogin from './auth/pages/StudentLogin';
 import AdminLogin from './auth/pages/AdminLogin';
 import TeacherLogin from './auth/pages/TeacherLogin';
@@ -25,6 +25,7 @@ function App() {
 				<Route exact path='/' component={Games} />
 				<Route path='/G1' component={MuiTheme} />
 				<Route path='/G2' component={Index} />
+				<Route path='/G3' component={G3} />
 				<Route path='/G4' component={G4} />
 				<Route exact path='/login/student/' component={StudentLogin} />
 
