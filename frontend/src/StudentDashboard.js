@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from 'react';
-import { TokenContext } from './TokenContext';
+import { TokenContext } from './context/TokenContext';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const StudentDashboard = () => {
 	const [token, setToken] = useContext(TokenContext);
@@ -8,13 +9,30 @@ const StudentDashboard = () => {
 
 	useEffect(() => {
 		console.log('token at student dashboard', token);
-		if (!token) history.push('/login/student');
+
+		if (!token || token.type !== 'student') history.push('/login/student');
 	});
+
+	const handleLogout = () => {
+		axios({
+			method: 'get',
+			url: 'https://narahariapi.herokuapp.com/api/auth/student/logout',
+			headers: {
+				'auth-token': token.tokenValue,
+			},
+		})
+			.then((res) => {
+				console.log(res);
+				setToken({ type: null, value: null });
+			})
+			.catch((err) => console.log(err));
+	};
 
 	return (
 		<div>
+			<button onClick={handleLogout}>Logout</button>
 			<h1>Student Dashboard</h1>
-			{token}
+			{JSON.stringify(token)}
 		</div>
 	);
 };

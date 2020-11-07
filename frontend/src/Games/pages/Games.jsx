@@ -3,7 +3,7 @@ import { Container, Typography } from '@material-ui/core';
 import { Row, Col } from 'react-bootstrap';
 
 import GameCard from '../components/GameCard';
-import { TokenContext } from '../../TokenContext';
+import { TokenContext } from '../../context/TokenContext';
 import { useHistory } from 'react-router-dom';
 
 import img1 from '../../assets/img/1.jpg';
@@ -12,7 +12,7 @@ import img3 from '../../assets/img/3.jpg';
 import img4 from '../../assets/img/4.jpg';
 
 const Games = () => {
-	const [token, setToken] = useContext(TokenContext);
+	const [token] = useContext(TokenContext);
 	const history = useHistory();
 
 	useEffect(() => {

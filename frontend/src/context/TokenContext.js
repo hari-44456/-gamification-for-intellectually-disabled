@@ -1,9 +1,10 @@
-import React, { useState, createContext } from 'react';
+import React, { createContext } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export const TokenContext = createContext();
 
 export const TokenProvider = ({ children }) => {
-	const [token, setToken] = useState(null);
+	const [token, setToken] = useLocalStorage(null, null);
 	return (
 		<TokenContext.Provider value={[token, setToken]}>
 			{children}

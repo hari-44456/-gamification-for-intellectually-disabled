@@ -11,7 +11,7 @@ import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 
 import LoginValidator from '../utils/LoginValidator';
-import { TokenContext } from '../../TokenContext';
+import { TokenContext } from '../../context/TokenContext';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const DismissibleAlert = ({ error }) => {
+const DisplayAlert = ({ error }) => {
 	return (
 		<Alert severity='error'>
 			<AlertTitle>{error}</AlertTitle>
@@ -54,7 +54,10 @@ export default function LoginForm({ type }) {
 	};
 
 	useEffect(() => {
-		if (token) history.push(`/${type}/dashboard`);
+		console.log('token at login page is ', token);
+		const validTokenPrefix = ['student', 'teacher', 'admin'];
+		if (token && token.type && validTokenPrefix.includes(token.type))
+			history.push(`/${token.type}/dashboard`);
 	});
 
 	const resetForm = () => {
@@ -92,18 +95,17 @@ export default function LoginForm({ type }) {
 			)
 			.then((res) => {
 				console.log('then', res.data);
-				setToken(res.data);
+				setToken({ type: type, tokenValue: res.data });
 				history.push(`/${type}/dashboard`);
 			})
 			.catch((err) => {
-				// console.log('catch', err.response.data);
-				setLoginError(err);
+				setLoginError(err.response.data);
 			});
 	};
 
 	return (
 		<>
-			{loginError !== '' ? <DismissibleAlert error={loginError} /> : ''}
+			{loginError !== '' ? <DisplayAlert error={loginError} /> : ''}
 			<Form className='login-form'>
 				<FormGroup>
 					<TextField
