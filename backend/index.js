@@ -8,7 +8,11 @@ dotenv.config();
 
 mongoose.connect(
 	process.env.DB_CONNECT,
-	{ useNewUrlParser: true, useUnifiedTopology: true },
+	{
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		useFindAndModify: false,
+	},
 	() => console.log('connected to db...'),
 );
 
@@ -23,11 +27,13 @@ const studentAuthRoute = require('./routes/studentAuth');
 const teacherAuthRoute = require('./routes/teacherAuth');
 const adminAuthRoute = require('./routes/adminAuth');
 const postroute = require('./routes/posts');
+const scoreRoute = require('./routes/score');
 
 // Route middlewares
 app.use('/api/auth/student', studentAuthRoute);
 app.use('/api/auth/teacher', teacherAuthRoute);
 app.use('/api/auth/admin', adminAuthRoute);
 app.use('/api/auth/posts', postroute);
+app.use('/student/score', scoreRoute);
 
 app.listen(process.env.PORT || 5000, () => console.log('running on 5000...'));
