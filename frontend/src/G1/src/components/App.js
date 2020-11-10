@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import levelFactory from './../lib/levels-factory';
 import Game from './Game';
-import Footer from './Footer';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -48,7 +47,6 @@ class App extends Component {
           onNewClick={this.onNewClick}
           original={this.state.original.tileSet}
         />
-        <Footer />
       </div>
     );
   }

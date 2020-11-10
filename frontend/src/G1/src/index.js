@@ -1,6 +1,5 @@
 import React from 'react';
 import App from './components/App';
-import './styles/index.css';
 import levelFactory from './lib/levels-factory';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
