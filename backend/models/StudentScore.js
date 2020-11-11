@@ -13,8 +13,8 @@ const StudentScoreSchema = new mongoose.Schema({
 			g4: Number,
 
 			date: {
-				type: Number,
-				default: Date.now(),
+				type: String,
+				default: new Date().toISOString().substring(0, 10),
 			},
 			isImproved: {
 				type: Boolean,
