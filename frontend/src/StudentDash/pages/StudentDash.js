@@ -5,10 +5,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import StudentInfo from '../components/StudentInfo';
 import GraphReport from '../components/GraphReport';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     info: {
-        display: 'sticky',
-        top: '50%',
+        position: 'sticky',
+        top: 0,
+        alignSelf: 'flex-start',
     },
 }));
 
@@ -16,12 +17,21 @@ export default function StudentDash(){
     const classes = useStyles();
 
     return(
-        <Row className={classes.info}>
-            <Col md={4}>
-                <StudentInfo />
+        <Row>
+            <Col md={4} className={classes.info}>
+                <Row>
+                    <Col>
+                        <StudentInfo />
+                    </Col>
+                </Row>
             </Col>
             <Col md={8} align='left'>
-                <GraphReport />
+                <Row>
+                    <Col>
+                        <GraphReport />
+                        <GraphReport />
+                    </Col>
+                </Row>
             </Col>
         </Row>
     );
