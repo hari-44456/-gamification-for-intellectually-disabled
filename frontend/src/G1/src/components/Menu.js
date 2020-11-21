@@ -62,7 +62,7 @@ class Menu extends Component {
       <StyledToolbar className="toolbar">
         <ToolbarTitle
           className="toolbarTitle"
-          text="React Puzzle Games - 15 Puzzle"
+          text="Tile Game"
         />
         <ToolbarGroup>
           <RaisedButton

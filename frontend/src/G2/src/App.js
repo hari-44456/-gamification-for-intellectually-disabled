@@ -3,6 +3,7 @@ import './App.css';
 import Textbox from './components/textbox';
 import Btnsubmit from './components/btn_submit';
 import Scoreboard from './components/score';
+import {Row,Col} from 'react-bootstrap';
 import './index.css';
 
 
@@ -91,11 +92,6 @@ const App = () => {
   }, [tooHighOrLow, guessInput, flagButtonClick, trackSelection, trackCurrentHighScore, optionSelected])
 
 
-  // Standard level begins
-  const standard = () => {
-    setOptionSelected('Standard');
-  }
-
   // Expert level begins
   const expert = () => {
     setOptionSelected('Expert');
@@ -109,28 +105,11 @@ const App = () => {
     }
   }
 
-
-  // Returns user back to the home screen to change difficuty 
-  const changeDiff = (e) => {
-    e.preventDefault();
-    setOptionSelected(false);
-    if (optionSelected === 'Standard') {
-      expertHighScore = '';
-      setTrackSelection([])
-    } else if (optionSelected === 'Expert') {
-      currentHighScore = '';
-      setTrackSelection([])
-
-    }
-  }
-
   // Resets the game and gives another number
   const reset = (e) => {
     e.preventDefault();
     setTrackSelection([]);
     setGuessInput('');
-    // if option selected is "Standard"
-    winNumStan = Math.floor(Math.random() * 10) + 1;
     winNumExpert = Math.floor(Math.random() * 100) + 1;
 
   }
@@ -142,18 +121,7 @@ const App = () => {
     const input = parseInt(guessInput);
 
     // When the level is selected 
-    if (optionSelected === 'Standard') {
-      if (input > winNumStan && input < 11) {
-        setTooHighOrLow('Too High');
-      } else if (input < winNumStan && input < 11) {
-        setTooHighOrLow('Too Low');
-      } else if (input === winNumStan) {
-        setTooHighOrLow('Win');
-      } else {
-        alert('Please enter a number between 1-10.');
-        return;
-      };
-    } else if (optionSelected === 'Expert') {
+    if (optionSelected === 'Expert') {
       if (input > winNumExpert && input < 101) {
         setTooHighOrLow('Too High');
       } else if (input < winNumExpert && input < 101) {
@@ -172,12 +140,12 @@ const App = () => {
   if (optionSelected) {
     return (
       <div>
-        <header className="Title_Start">{optionSelected} Level</header>
+        <header className="Title_Start">Guess It</header>
         <form method="post" action="">
-          <Textbox data={inputChange} value={guessInput} />
-          <Btnsubmit data={buttonClick} reset={reset} changeDiff={changeDiff} />
+            <Textbox data={inputChange} value={guessInput} />
+            <Btnsubmit data={buttonClick} reset={reset}/>
         </form>
-        <Scoreboard score={trackSelection} highScore={optionSelected === 'Standard' ? currentHighScore : expertHighScore} level={optionSelected} />
+        <Scoreboard score={trackSelection} highScore={expertHighScore} />
 
       </div>
     );
@@ -189,14 +157,13 @@ const App = () => {
         <header className="Title_Start">Number Guessing Game</header>
         <h2 className="rules" style={{color:'black'}}>Rules:</h2>
         <p className="desc" style={{color:'black'}}>
-          First, choose a difficulty! (Easy: 1-10; Hard: 1-100). Enter in a number to see if your guess was right. Keep on trying
+          Enter in a number to see if your guess was right. Keep on trying
           to win and try beating your highscore! You can do it! :D
         </p>
         <div className="difficulty">
-          <h3>Select the difficulty:</h3>
+          <h3>Click the Enter Button:</h3>
           <form>
-            <button type='button' onClick={standard}>Standard</button>
-            <button type='button' onClick={expert}>Expert</button>
+            <button type='button' onClick={expert}>Enter</button>
           </form>
         </div>
       </div>
