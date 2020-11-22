@@ -29,6 +29,8 @@ function App() {
 					<Route path="/G4" component={G4}/>
 					<Route path="/G3" component={G3}/>
 					<Route exact path='/login/student/' component={StudentLogin} />
+					<Route exact path='/login/teacher/' component={TeacherLogin} />
+					<Route exact path='/login/admin/' component={AdminLogin} />
 
 				<Route
 					exact

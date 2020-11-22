@@ -58,7 +58,7 @@ export default function LoginForm({ type }) {
 		const validTokenPrefix = ['student', 'teacher', 'admin'];
 		if (token && token.type && validTokenPrefix.includes(token.type))
 			history.push(`/${token.type}/dashboard`);
-	});
+	},[]);
 
 	const resetForm = () => {
 		setUsername('');
@@ -99,7 +99,7 @@ export default function LoginForm({ type }) {
 				history.push(`/${type}/dashboard`);
 			})
 			.catch((err) => {
-				setLoginError(err);
+				setLoginError(JSON.stringify(err.response.data));
 			});
 	};
 
