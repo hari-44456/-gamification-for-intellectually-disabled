@@ -30,7 +30,7 @@ router.post('/register', verifyToken, verifyAdmin, (req, res) => {
 		password: req.body.password,
 	});
 
-	Student.findOne({ id: user.id }, async (err, doc) => {
+	Student.findOne({ id: user._id }, async (err, doc) => {
 		if (err) return res.status(400).send(err);
 		if (doc) return res.status(400).send('Student Already Exists!!!');
 
@@ -49,26 +49,26 @@ router.post('/login', (req, res) => {
 		return res.status(400).send('Data Incomplete!!!');
 
 	Student.findOne({ username: req.body.username }, async (err, user) => {
-		if (err) {
-			// return res.send(400, { error: 'Email does not exists!!!' });
-			// res.statusCode = 400;
+		if (err)
 			return res.status(400).send('Error occured while login route');
-		}
-		if (!user) return res.status(400).send('Email does not exists!!!');
+		
+		if (!user) 
+			return res.status(400).send('Email does not exists!!!'); 
 
-		const validPassword = await bcrypt.compare(
-			req.body.password,
+		console.log(user.password) 
+
+		const validPassword =  bcrypt.compareSync(req.body.password,
 			user.password,
 		);
 		if (!validPassword)
 			return res.status(400).send('Password is incorrect!!!');
 
-		const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+		const token = jwt.sign({ _id: user.id }, process.env.TOKEN_SECRET);
 
 		res.header('auth-token', token).send(token);
 	});
 });
-
+ 
 router.get('/logout', verifyToken, (req, res) => {
 	if (!req.user) return res.status(400).send('You are not logged in');
 	req.user = null;

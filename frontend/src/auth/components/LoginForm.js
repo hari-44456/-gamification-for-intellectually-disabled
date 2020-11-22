@@ -90,7 +90,7 @@ export default function LoginForm({ type }) {
 
 		axios
 			.post(
-				`https://narahariapi.herokuapp.com/api/auth/${type}/login`,
+				`http://localhost:5000/api/auth/${type}/login`,
 				data,
 			)
 			.then((res) => {

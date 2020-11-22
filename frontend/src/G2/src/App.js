@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,useContext, useEffect } from 'react';
 import './App.css';
 import Textbox from './components/textbox';
 import Btnsubmit from './components/btn_submit';
 import Scoreboard from './components/score';
-import {Row,Col} from 'react-bootstrap';
 import './index.css';
+import axios from 'axios'
+import {TokenContext} from '../../context/TokenContext';
 
 
 // Keeps track of the winning number
@@ -16,6 +17,9 @@ let currentHighScore = '';
 let expertHighScore = '';
 
 const App = () => {
+  // Use Token Context
+  const [token,srtToken]=useContext(TokenContext);
+
   // State for button when selected that will hide the unselected button
   const [optionSelected, setOptionSelected] = useState('');
 
@@ -79,6 +83,22 @@ const App = () => {
           }
         }
         alert(`You win! It took you ${trackSelection.length + 1} tries!`);
+
+        // Save Score To MongoDB
+        const headers={
+          'auth-token':token.tokenValue
+        }
+        let g2;
+        if(trackSelection.length + 1 <=6)
+          g2=100;
+        else 
+          g2=600/(trackSelection.length + 1);
+
+      axios.post('http://localhost:5000/student/score',{g2},{headers})
+        .then(res=>console.log(JSON.stringify(res)))
+        .catch(err=>console.log(JSON.stringify(err)))
+
+
         trackCurrentHighScore(trackSelection);
         setGuessInput('');
         setTrackSelection([]);

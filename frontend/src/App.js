@@ -23,10 +23,11 @@ function App() {
 	return (
 		<div className='App'>
 			<Switch>
-					<Route exact path="/"  component={StudentDash}/>
+					<Route exact path="/"  component={Games}/>
 					<Route path="/G1" component={MuiTheme} />
 					<Route path="/G2" component={Index}/>
 					<Route path="/G4" component={G4}/>
+					<Route path="/G3" component={G3}/>
 					<Route exact path='/login/student/' component={StudentLogin} />
 
 				<Route

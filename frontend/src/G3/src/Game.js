@@ -3,9 +3,9 @@ import moment from 'moment';
 import { Header } from './components/layout/Header';
 import { GameSection } from './components/layout/GameSection';
 import { StatusSection } from './components/layout/StatusSection';
-import { Footer } from './components/layout/Footer';
 import { getUniqueSudoku } from './solver/UniqueSudoku';
 import { useSudokuContext } from './context/SudokuContext';
+import  axios from 'axios';
 
 /**
  * Game is the main React component.
@@ -88,6 +88,7 @@ export const Game = () => {
       setGameArray(tempArray);
 
       if (_isSolved(index, value)) {
+        // axios.post('http://localhost:5000/student/score',{g3:})
         setOverlay(true);
         setWon(true);
       }
@@ -236,7 +237,6 @@ export const Game = () => {
             onClickFastMode={onClickFastMode}
           />
         </div>
-        <Footer />
       </div>
       <div className= { overlay
                         ? "overlay overlay--visible"

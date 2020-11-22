@@ -15,7 +15,7 @@ mongoose.connect(
 	},
 	() => console.log('connected to db...'),
 );
-
+ 
 app.use(express.json());
 app.use(cors({ origin: true }));
 

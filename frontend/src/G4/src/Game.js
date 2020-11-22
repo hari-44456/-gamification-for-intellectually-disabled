@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import ImageView from './ImageView';
 import MemoryOfImage from './MemoryOfImage';
 import './Game.css';
 
 import 'font-awesome/css/font-awesome.min.css';
+import axios from 'axios';
+import {TokenContext} from '../../context/TokenContext';
+
+let [token,setToken]="";
+
 class Game extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +20,7 @@ class Game extends Component {
 // start the game
   componentWillMount() {
     this.startGame();
+    // [token,setToken]=useContext(TokenContext)
   }
 // set the initial state before the game run
   startGame() {
@@ -100,6 +106,12 @@ class Game extends Component {
     this.startGame();
   }
 
+  // updateScore=(score)=>{
+  //   axios.post('http://localhost:5000/student/score',{g4:score},{headers:{'auth-token':token.tokenValue}})
+  //     .then(res=>console.log(res))
+  //     .catcj(rr=>console.log(rr))
+  // }
+
   render() {
     let ImageViews = this.getImageViews();
     let gameStatus = <div className='Game-status'>
@@ -110,6 +122,7 @@ class Game extends Component {
                     </div>;
 // once all image pair is found, display the message
     if (this.state.pairsMatched === this.memoryOfImage.total_Images) {
+      // this.updateScore(this.state.moves-1);
       gameStatus = <div className='Game-complete'>
                     <div>GAME COMPLETE!&nbsp;&nbsp;&nbsp;&nbsp;</div>
                     <div>You used {this.state.moves-1} moves &nbsp;&nbsp;&nbsp;&nbsp;</div>

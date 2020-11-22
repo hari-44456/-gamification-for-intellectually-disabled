@@ -3,15 +3,17 @@ const StudentScore = require('../models/StudentScore');
 const { verifyToken } = require('../verify');
 
 router.post('/', verifyToken, async (req, res) => {
+	console.log(req.user._id)
 	try {
-		const { sid = -1, g1 = -1, g2 = -1, g3 = -1, g4 = -1 } = req.body;
+		const { g1 = -1, g2 = -1, g3 = -1, g4 = -1 } = req.body;
+		console.log('From route ',req.user)
 
-		StudentScore.findOne({ sid }, async (err, doc) => {
+		StudentScore.findOne({ sid:req.user._id }, async (err, doc) => {
 			if (err) return res.status(400).send('Error...');
 
 			if (!doc) {
 				const newDoc = new StudentScore({
-					sid,
+					sid:req.user._id,
 					scores: { g1, g2, g3, g4 },
 				});
 
