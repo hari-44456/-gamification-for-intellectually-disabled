@@ -11,9 +11,8 @@ import AdminLogin from './auth/pages/AdminLogin';
 import TeacherLogin from './auth/pages/TeacherLogin';
 import StudentRegister from './auth/pages/StudentRegister';
 import TeacherRegister from './auth/pages/TeacherRegister';
-import StudentDash from './StudentDash/pages/StudentDash';
 
-import StudentDashboard from './StudentDashboard';
+import StudentDashboard from './StudentDash/pages/StudentDash';
 import AdminDashboard from './AdminDashboard';
 import TeacherDashboard from './TeacherDashboard';
 

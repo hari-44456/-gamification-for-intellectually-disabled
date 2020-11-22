@@ -116,7 +116,7 @@ class Game extends Component {
                       <div >Moves: {this.state.moves}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                     
                       <div >Match found: {this.state.pairsMatched}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                      <div class="reset" onClick={this.Restart}>Restart<i className="fab fa-creative-commons-sa"></i></div>
+                      <div className="reset" onClick={this.Restart}>Restart<i className="fab fa-creative-commons-sa"></i></div>
                     </div>;
 // once all image pair is found, display the message
     if (this.state.pairsMatched === this.memoryOfImage.total_Images) {

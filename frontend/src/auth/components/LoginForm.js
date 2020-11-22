@@ -87,10 +87,10 @@ export default function LoginForm({ type }) {
 			username,
 			password,
 		};
-
+		
 		axios
 			.post(
-				`http://localhost:5000/api/auth/${type}/login`,
+				`https://narahariapi.herokuapp.com/api/auth/${type}/login`,
 				data,
 			)
 			.then((res) => {
@@ -99,7 +99,7 @@ export default function LoginForm({ type }) {
 				history.push(`/${type}/dashboard`);
 			})
 			.catch((err) => {
-				setLoginError(err.response.data);
+				setLoginError(err);
 			});
 	};
 
