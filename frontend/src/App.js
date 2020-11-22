@@ -11,6 +11,7 @@ import AdminLogin from './auth/pages/AdminLogin';
 import TeacherLogin from './auth/pages/TeacherLogin';
 import StudentRegister from './auth/pages/StudentRegister';
 import TeacherRegister from './auth/pages/TeacherRegister';
+import StudentDash from './StudentDash/pages/StudentDash';
 
 import StudentDashboard from './StudentDashboard';
 import AdminDashboard from './AdminDashboard';
@@ -22,22 +23,11 @@ function App() {
 	return (
 		<div className='App'>
 			<Switch>
-				<Route exact path='/' component={Games} />
-				<Route path='/G1' component={MuiTheme} />
-				<Route path='/G2' component={Index} />
-				<Route path='/G3' component={G3} />
-				<Route path='/G4' component={G4} />
-				<Route exact path='/login/student/' component={StudentLogin} />
-
-				<Route exact path='/login/admin/' component={AdminLogin} />
-
-				<Route exact path='/login/teacher/' component={TeacherLogin} />
-
-				<Route
-					exact
-					path='/register/student'
-					component={StudentRegister}
-				/>
+					<Route exact path="/"  component={StudentDash}/>
+					<Route path="/G1" component={MuiTheme} />
+					<Route path="/G2" component={Index}/>
+					<Route path="/G4" component={G4}/>
+					<Route exact path='/login/student/' component={StudentLogin} />
 
 				<Route
 					exact

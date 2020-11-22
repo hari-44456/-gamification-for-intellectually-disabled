@@ -187,7 +187,7 @@ class Game extends Component {
       this.setState({
         gameState: checkGameOver ? GAME_OVER : GAME_STARTED,
         tiles: t,
-        moves: this.state.moves + 1,
+        moves: this.state.moves + 1,  
         dialogOpen: checkGameOver ? true : false,
       });
     }
