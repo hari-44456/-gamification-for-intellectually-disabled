@@ -29,7 +29,9 @@
     "react-scripts": "3.4.3",
     "react-tap-event-plugin": "^3.0.3",
     "shuffle-array": "^1.0.1",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "web-vitals": "^0.2.4",
+    "react-canvas-js": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
