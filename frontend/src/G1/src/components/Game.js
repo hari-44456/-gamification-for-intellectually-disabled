@@ -184,9 +184,10 @@ class Game extends Component {
 
       const checkGameOver = this.isGameOver(t);
       console.log(checkGameOver)
+     
 
       if(checkGameOver) {
-        axios.post('http://localhost:5000/student/score',{g1:this.state.moves+1},{headers:{'auth-token':this.props.token.tokenValue}})
+        axios.post(' https://narahariapi.herokuapp.com/student/score',{g1:this.state.moves+1},{headers:{'auth-token':this.props.token.tokenValue}})
           .then(res=>console.log(res))
           .catch(err=>console.log(err))
       }
