@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,useContext, useEffect } from 'react';
 import './App.css';
 import Textbox from './components/textbox';
 import Btnsubmit from './components/btn_submit';
 import Scoreboard from './components/score';
 import './index.css';
+import axios from 'axios'
+import {TokenContext} from '../../context/TokenContext';
 
 
 // Keeps track of the winning number
@@ -15,6 +17,9 @@ let currentHighScore = '';
 let expertHighScore = '';
 
 const App = () => {
+  // Use Token Context
+  const [token,srtToken]=useContext(TokenContext);
+
   // State for button when selected that will hide the unselected button
   const [optionSelected, setOptionSelected] = useState('');
 
@@ -78,6 +83,22 @@ const App = () => {
           }
         }
         alert(`You win! It took you ${trackSelection.length + 1} tries!`);
+
+        // Save Score To MongoDB
+        const headers={
+          'auth-token':token.tokenValue
+        }
+        let g2;
+        if(trackSelection.length + 1 <=6)
+          g2=100;
+        else 
+          g2=600/(trackSelection.length + 1);
+
+      axios.post('http://localhost:5000/student/score',{g2},{headers})
+        .then(res=>console.log(JSON.stringify(res)))
+        .catch(err=>console.log(JSON.stringify(err)))
+
+
         trackCurrentHighScore(trackSelection);
         setGuessInput('');
         setTrackSelection([]);
@@ -90,11 +111,6 @@ const App = () => {
 
   }, [tooHighOrLow, guessInput, flagButtonClick, trackSelection, trackCurrentHighScore, optionSelected])
 
-
-  // Standard level begins
-  const standard = () => {
-    setOptionSelected('Standard');
-  }
 
   // Expert level begins
   const expert = () => {
@@ -109,28 +125,11 @@ const App = () => {
     }
   }
 
-
-  // Returns user back to the home screen to change difficuty 
-  const changeDiff = (e) => {
-    e.preventDefault();
-    setOptionSelected(false);
-    if (optionSelected === 'Standard') {
-      expertHighScore = '';
-      setTrackSelection([])
-    } else if (optionSelected === 'Expert') {
-      currentHighScore = '';
-      setTrackSelection([])
-
-    }
-  }
-
   // Resets the game and gives another number
   const reset = (e) => {
     e.preventDefault();
     setTrackSelection([]);
     setGuessInput('');
-    // if option selected is "Standard"
-    winNumStan = Math.floor(Math.random() * 10) + 1;
     winNumExpert = Math.floor(Math.random() * 100) + 1;
 
   }
@@ -142,18 +141,7 @@ const App = () => {
     const input = parseInt(guessInput);
 
     // When the level is selected 
-    if (optionSelected === 'Standard') {
-      if (input > winNumStan && input < 11) {
-        setTooHighOrLow('Too High');
-      } else if (input < winNumStan && input < 11) {
-        setTooHighOrLow('Too Low');
-      } else if (input === winNumStan) {
-        setTooHighOrLow('Win');
-      } else {
-        alert('Please enter a number between 1-10.');
-        return;
-      };
-    } else if (optionSelected === 'Expert') {
+    if (optionSelected === 'Expert') {
       if (input > winNumExpert && input < 101) {
         setTooHighOrLow('Too High');
       } else if (input < winNumExpert && input < 101) {
@@ -172,12 +160,12 @@ const App = () => {
   if (optionSelected) {
     return (
       <div>
-        <header className="Title_Start">{optionSelected} Level</header>
+        <header className="Title_Start">Guess It</header>
         <form method="post" action="">
-          <Textbox data={inputChange} value={guessInput} />
-          <Btnsubmit data={buttonClick} reset={reset} changeDiff={changeDiff} />
+            <Textbox data={inputChange} value={guessInput} />
+            <Btnsubmit data={buttonClick} reset={reset}/>
         </form>
-        <Scoreboard score={trackSelection} highScore={optionSelected === 'Standard' ? currentHighScore : expertHighScore} level={optionSelected} />
+        <Scoreboard score={trackSelection} highScore={expertHighScore} />
 
       </div>
     );
@@ -189,14 +177,13 @@ const App = () => {
         <header className="Title_Start">Number Guessing Game</header>
         <h2 className="rules" style={{color:'black'}}>Rules:</h2>
         <p className="desc" style={{color:'black'}}>
-          First, choose a difficulty! (Easy: 1-10; Hard: 1-100). Enter in a number to see if your guess was right. Keep on trying
+          Enter in a number to see if your guess was right. Keep on trying
           to win and try beating your highscore! You can do it! :D
         </p>
         <div className="difficulty">
-          <h3>Select the difficulty:</h3>
+          <h3>Click the Enter Button:</h3>
           <form>
-            <button type='button' onClick={standard}>Standard</button>
-            <button type='button' onClick={expert}>Expert</button>
+            <button type='button' onClick={expert}>Enter</button>
           </form>
         </div>
       </div>

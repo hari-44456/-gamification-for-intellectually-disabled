@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,useContext } from 'react';
 import { getTileCoords, distanceBetween, invert } from '../lib/utils';
 import Grid from './Grid';
 import Menu from './Menu';
@@ -13,6 +13,8 @@ import FlatButton from 'material-ui/FlatButton';
 import Snackbar from 'material-ui/Snackbar';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import axios from 'axios';
+import {TokenContext} from '../../../context/TokenContext'
 
 class Game extends Component {
   constructor(props) {
@@ -33,6 +35,11 @@ class Game extends Component {
 
     document.addEventListener('keydown', this.keyDownListener);
   }
+
+  // componentDidMount(){
+  //   const [token,setToken]=useContext(TokenContext)
+
+  // }
 
   componentWillReceiveProps(nextProps) {
     const { tileSize, gridSize } = this.props;
@@ -183,6 +190,16 @@ class Game extends Component {
       ]);
 
       const checkGameOver = this.isGameOver(t);
+
+      // if(checkGameOver===GAME_OVER) {
+      //   // Update to db
+      //   const headers={
+      //     'auth-token':token.tokenValue
+      //   }
+      //   axios.post('http://localhost:5000/student/score',{g1:this.state.moves},headers)
+      //     .then(res=>console.log(res))
+      //     .catch(err=>console.log(err))
+      // }
 
       this.setState({
         gameState: checkGameOver ? GAME_OVER : GAME_STARTED,
