@@ -11,11 +11,12 @@ import AdminLogin from './auth/pages/AdminLogin';
 import TeacherLogin from './auth/pages/TeacherLogin';
 import StudentRegister from './auth/pages/StudentRegister';
 import TeacherRegister from './auth/pages/TeacherRegister';
-
-import StudentDashboard from './StudentDash/pages/StudentDash';
+import StudentDash from './StudentDash/pages/StudentDash';
+import AdminView from './AdminVisual/StudentDash/components/GraphReport'
+import StudentDashboard from './StudentDashboard';
 import AdminDashboard from './AdminDashboard';
 import TeacherDashboard from './TeacherDashboard';
-
+import App1 from './Flask/ui/src/index'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
 					<Route path="/G4" component={G4}/>
 					<Route path="/G3" component={G3}/>
 					<Route exact path='/login/student/' component={StudentLogin} />
+					<Route exact path='/login/teacher/' component={TeacherLogin} />
+					<Route exact path='/login/admin/' component={AdminLogin} />
 
 				<Route
 					exact
@@ -51,6 +54,16 @@ function App() {
 					exact
 					path='/admin/dashboard'
 					component={AdminDashboard}
+				/>
+				<Route
+					exact
+					path='/model'
+					component={App1}
+				/>
+				<Route
+					exact
+					path='/adminview'
+					component={AdminView }
 				/>
 			</Switch>
 		</div>

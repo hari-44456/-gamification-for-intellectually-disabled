@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Line} from 'react-chartjs-2';
+import Pie from './pie';
 const data = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Sept', 'Oct', 'Nov', 'Dec'],
     datasets: [
@@ -26,26 +27,14 @@ const data = {
       }
     ]
 };
-function App() {
-  const [appState, setAppState] = useState({
-    G1:null,G2:null,G3:null,G4:null
-  });
 
-  useEffect(() => {
-    setAppState({});
-    const apiUrl = `https:/`;
-    fetch(apiUrl)
-      .then((res) => res.json())
-      .then(() => {
-        setAppState({  });
-      });
-  }, [setAppState]);  
-}
 export default function StudentInfo(){
     return (
         <React.Fragment>
-            <h2>Line Example</h2>
+             <h1>Admin Analysis</h1>
+            <h2>Line Graph for the Games</h2>
             <Line data={data} />
+            <Pie/>
         </React.Fragment>
     );
 };

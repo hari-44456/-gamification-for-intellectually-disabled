@@ -26,7 +26,7 @@ const data = {
       }
     ]
 };
-function App() {
+/* function App() {
   const [appState, setAppState] = useState({
     G1:null,G2:null,G3:null,G4:null
   });
@@ -40,8 +40,8 @@ function App() {
         setAppState({  });
       });
   }, [setAppState]);  
-}
-export default function StudentInfo(){
+} */
+export default function Adminview(){
     return (
         <React.Fragment>
             <h2>Line Example</h2>
