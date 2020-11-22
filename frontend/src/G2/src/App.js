@@ -3,7 +3,6 @@ import './App.css';
 import Textbox from './components/textbox';
 import Btnsubmit from './components/btn_submit';
 import Scoreboard from './components/score';
-import {Row,Col} from 'react-bootstrap';
 import './index.css';
 
 
