@@ -84,13 +84,13 @@ class Menu extends Component {
             title="Pause/Continue current game."
             disabled={gameState !== GAME_STARTED && gameState !== GAME_PAUSED}
           />
-          <RaisedButton
+          {/* <RaisedButton
             className="menuButton"
             label="Reset game"
             onClick={onResetClick}
             title="Reset game"
             icon={<Replay className="menuIcon" />}
-          />
+          /> */}
           <Chip>
             <Avatar icon={<Alarm />} />
             <MediaQuery query="(min-width: 772px)" component="span">
