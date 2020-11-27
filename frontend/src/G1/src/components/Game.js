@@ -13,6 +13,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Snackbar from 'material-ui/Snackbar';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import axios from 'axios';
 
 class Game extends Component {
   constructor(props) {
@@ -105,9 +106,9 @@ class Game extends Component {
     if (correctedTiles.length === (this.props.gridSize) ** 2) {
       clearInterval(this.timerId);
       return true;
-    } else {
+    }  
       return false;
-    }
+    
   }
 
   addTimer() {
@@ -154,7 +155,6 @@ class Game extends Component {
     ) {
       return;
     }
-
     // Set Timer in case of first click
     if (this.state.moves === 0) {
       this.setTimer();
@@ -183,11 +183,19 @@ class Game extends Component {
       ]);
 
       const checkGameOver = this.isGameOver(t);
+      console.log(checkGameOver)
+     
+
+      if(checkGameOver) {
+        axios.post(' https://narahariapi.herokuapp.com/student/score',{g1:this.state.moves+1},{headers:{'auth-token':this.props.token.tokenValue}})
+          .then(res=>console.log(res))
+          .catch(err=>console.log(err))
+      }
 
       this.setState({
         gameState: checkGameOver ? GAME_OVER : GAME_STARTED,
         tiles: t,
-        moves: this.state.moves + 1,
+        moves: this.state.moves + 1,  
         dialogOpen: checkGameOver ? true : false,
       });
     }
