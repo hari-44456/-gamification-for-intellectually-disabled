@@ -42,7 +42,10 @@ export default function StudentInfo(){
         <Card style={{padding:'10px'}}>
             <Row>
                 <Col align='center'>
-                    <button onClick={handleLogout} style={{float:'right',width:'20%',padding:0}} >LogOut</button>
+                    <div style={{display:'flex',flexDirection:'row-reverse'}}>
+                        <button onClick={handleLogout} style={{marginLeft:'15px',width:'20%',padding:0}} >LogOut</button>
+                        <button onClick={()=>history.push('/')} style={{ padding:0,width:'20%' }}>Play Games</button>
+                    </div>
                     <Avatar className={classes.large} src={PersonImage} alt='person-image'/>
                 </Col>
             </Row>
