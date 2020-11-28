@@ -2,7 +2,7 @@ import React,{useEffect,useContext} from 'react';
 import {Row,Col} from 'react-bootstrap';
 import { Avatar, Card, makeStyles, Typography } from '@material-ui/core';
 import {useHistory} from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../axios';
 import {TokenContext} from '../../context/TokenContext';
 import PersonImage from '../../assets/img/person-outline.png';
 
@@ -27,7 +27,7 @@ export default function StudentInfo(){
 	const handleLogout = () => {
 		axios({
 			method: 'get',
-			url: 'https://narahariapi.herokuapp.com/api/auth/student/logout',
+			url: '/api/auth/student/logout',
 			headers: {
 				'auth-token': token.tokenValue,
 			},

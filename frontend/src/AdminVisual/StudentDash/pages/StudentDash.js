@@ -6,6 +6,7 @@ import StudentInfo from '../components/StudentInfo';
 import GraphReport from '../components/GraphReport';
 import { TokenContext } from './context/TokenContext';
 import { useHistory } from 'react-router-dom';
+import axios from '../../../config';
 
 const useStyles = makeStyles(() => ({
     info: {
@@ -29,7 +30,7 @@ export default function StudentDash(){
 	const handleLogout = () => {
 		axios({
 			method: 'get',
-			url: 'https://narahariapi.herokuapp.com/api/auth/admin/logout',
+			url: 'api/auth/admin/logout',
 			headers: {
 				'auth-token': token.tokenValue,
 			},
