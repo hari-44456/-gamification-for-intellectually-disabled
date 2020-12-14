@@ -173,7 +173,7 @@ export default function LoginForm({ type }) {
 					color='error'
 					variant='subtitle2'
 					className={classes.forgotPassword}>
-					<b>Forgot Password?</b>
+					{/* <b>Forgot Password?</b> */}
 				</Typography>
 				<Button
 					className={[classes.button, classes.style].join(' ')}
