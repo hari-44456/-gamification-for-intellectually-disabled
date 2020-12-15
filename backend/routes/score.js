@@ -2,6 +2,22 @@ const router = require('express').Router();
 const StudentScore = require('../models/StudentScore');
 const { verifyToken } = require('../verify');
 
+router.get('/',verifyToken, (req, res) => {
+	try {
+		StudentScore.findOne({ sid: req.uesr._id }, async (err, doc) => {
+			if (err) {
+				return res.status(400).send('Error: ' + err.message);
+			}
+			if (!doc) {
+				return res.status(400).send('student not found');
+			}
+			return res.status(400).send(doc);
+		})
+	} catch (err) {
+		return res.status(400).send('Error: ' + err.message);
+	}
+})
+
 router.post('/', verifyToken, async (req, res) => {
 	// console.log(req.user._id)
 	try {
