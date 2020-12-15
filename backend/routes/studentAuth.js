@@ -55,8 +55,6 @@ router.post('/login', (req, res) => {
 		if (!user) 
 			return res.status(400).send('Email does not exists!!!'); 
 
-		console.log(user.password) 
-
 		const validPassword =  bcrypt.compareSync(req.body.password,
 			user.password,
 		);

@@ -1,10 +1,10 @@
-import React, { Component, useContext } from 'react';
+import React, { Component } from 'react';
 import ImageView from './ImageView';
 import MemoryOfImage from './MemoryOfImage';
 import './Game.css';
 
 import 'font-awesome/css/font-awesome.min.css';
-import axios from 'axios';
+import axios from '../../axios';
 
 class Game extends Component {
   constructor(props) {
@@ -104,12 +104,6 @@ class Game extends Component {
     this.startGame();
   }
 
-  // updateScore=(score)=>{
-  //   axios.post('http://localhost:5000/student/score',{g4:score},{headers:{'auth-token':token.tokenValue}})
-  //     .then(res=>console.log(res))
-  //     .catcj(rr=>console.log(rr))
-  // }
-
   render() {
     let ImageViews = this.getImageViews();
     let gameStatus = <div className='Game-status'>
@@ -125,7 +119,7 @@ class Game extends Component {
 			'auth-token':this.token.token.tokenValue
 		};
 		let g4=this.state.moves-1;
-		axios.post('http://localhost:5000/student/score',{g4},{headers})
+		axios.post('/student/score',{g4},{headers})
 		.then(res=>console.log(JSON.stringify(res)))
 	  	.catch(err=>console.log(JSON.stringify(err)))
   

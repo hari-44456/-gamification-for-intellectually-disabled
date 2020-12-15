@@ -21,7 +21,7 @@ const Games = () => {
 
 	return (
 		<React.Fragment>
-			<Typography variant='h2'>Student Dashboard</Typography>
+			<Typography variant='h2'>Games</Typography>
 			<Container>
 				<Row>
 					<Col md={6} align='center'>

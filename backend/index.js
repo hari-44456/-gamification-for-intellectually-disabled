@@ -36,4 +36,5 @@ app.use('/api/auth/admin', adminAuthRoute);
 app.use('/api/auth/posts', postroute);
 app.use('/student/score', scoreRoute);
 
-app.listen(process.env.PORT || 5000, () => console.log('running on 5000...'));
+const PORT=process.env.PORT || 5001;
+app.listen(PORT, () => console.log(`running on port ${PORT}...`));
