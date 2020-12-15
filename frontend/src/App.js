@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 
 import './index.css';
 
@@ -15,17 +16,21 @@ import TeacherLogin from './auth/pages/TeacherLogin';
 import StudentRegister from './auth/pages/StudentRegister';
 import TeacherRegister from './auth/pages/TeacherRegister';
 import AdminView from './AdminVisual/StudentDash/components/GraphReport'
-
-
 import StudentDashboard from './StudentDash/pages/StudentDash';
 import TeacherDashboard from './TeacherDashboard';
 import App1 from './Flask/ui/src/index'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import Login from './login';
+
+const useStyles = makeStyles((theme) => ({
+    wrapper: {
+        margin: theme.spacing(0, 2, 0, 2),
+    }
+}));
 
 function App() {
+	const styles = useStyles();
 	return (
-		<div className='App'>
+		<div className={['App', styles.wrapper].join(' ')}>
 			<Switch>
 				<Route exact path="/"  component={Games}/>
 				<Route path="/G1" component={G1} />
