@@ -18,12 +18,13 @@ import AdminDashboard from './AdminDashboard';
 import TeacherDashboard from './TeacherDashboard';
 import App1 from './Flask/ui/src/index'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Login from './login';
 
 function App() {
 	return (
 		<div className='App'>
 			<Switch>
-					<Route exact path="/"  component={Games}/>
+					<Route exact path="/"  component={Login}/>
 					<Route path="/G1" component={MuiTheme} />
 					<Route path="/G2" component={Index}/>
 					<Route path="/G4" component={G4}/>
