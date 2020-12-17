@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const StudentScoreSchema = new mongoose.Schema({
 	sid: {
 		type: String,
+		ref:'Student',
 		required: true,
 	},
 	scores: [
