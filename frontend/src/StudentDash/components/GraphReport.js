@@ -1,21 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React from 'react';
 import {Line} from 'react-chartjs-2';
 
-import axios from '../../axios';
-import { TokenContext } from '../../context/TokenContext';
-import Loader from '../../utils/Loader';
-
-export default function StudentInfo(){
-	const [loading, setLoading] = useState(true);
-	const [dates, setDates] = useState([]);
-	const [scores, setScores] = useState([]);
-	const [token, setToken] = useContext(TokenContext);
-	const headers = {
-		'auth-token': token.tokenValue,
-	};
-
+export default function StudentInfo({ labels,scores }){
 	const data = {
-		labels: dates,
+		labels,
 		datasets: [
 			{
 				label: 'Scores',
@@ -40,33 +28,6 @@ export default function StudentInfo(){
 			}
 		]
 	};
-
-	useEffect(() => {
-		const tempDates = [];
-		const tempScores = [];
-		axios.get('/student/score',{headers})
-		.then(response =>{
-			var len = response.data.scores.length;
-			for(var i=len-1;i>=19;i--){
-				let date = response.data.scores[i].date;
-				let datearr = date.split('-');
-				date = datearr[1]+'/'+datearr[2]+'/'+datearr[0];
-				tempDates.push(date);
-				tempScores.push((response.data.scores[i].g1+response.data.scores[i].g2+response.data.scores[i].g3+response.data.scores[i].g4)/4);
-			}
-			tempDates.push(0);
-			tempScores.push(0);
-			tempDates.reverse();
-			tempScores.reverse();
-			setDates(tempDates);
-			setScores(tempScores);
-			setLoading(false);
-		}, (err) => {console.log(err);console.log(token.tokenValue)});
-	}, []);
-
-	if(loading){
-		return <Loader />;
-	}
 
     return (
         <React.Fragment>
