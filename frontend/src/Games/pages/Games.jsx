@@ -16,7 +16,7 @@ const Games = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		if (!token.tokenValue) history.push('/login/student');
+		if (!token || !token.tokenValue) history.push('/login/student');
 	});
 
 	return (

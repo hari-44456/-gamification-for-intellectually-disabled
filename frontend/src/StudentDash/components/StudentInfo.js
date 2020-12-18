@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function StudentInfo(){
+export default function StudentInfo({ studentId }) {
     const classes = useStyles();
     const [token, setToken] = useContext(TokenContext);
 	const history = useHistory();
@@ -75,7 +75,7 @@ export default function StudentInfo(){
                         </Col>
                         <Col md={9}>
                             <Typography variant='h6'>
-                                Student Id
+                                {studentId}
                             </Typography>
                         </Col>
                     </Row>
