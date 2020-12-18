@@ -25,7 +25,7 @@ const data = {
         pointHoverBorderColor: 'rgba(220,220,220,1)',
         pointHoverBorderWidth: 2,
         pointRadius: 1,
-        pointHitRadius: 10,
+        pointHitRadius: 8,
         data: [65, 59, 80, 81, 56, 55, 40,2,3,4,100,6]
       }
     ]

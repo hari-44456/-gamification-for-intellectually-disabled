@@ -9,7 +9,7 @@ import G1 from './G1/src/index';
 import G2 from './G2/src/index';
 import G3 from './G3/src/index';
 import G4 from './G4/src/index';
-
+import TeacherDashboard from './TeacherDashboard/index'
 import StudentLogin from './auth/pages/StudentLogin';
 import AdminLogin from './auth/pages/AdminLogin';
 import TeacherLogin from './auth/pages/TeacherLogin';
@@ -17,7 +17,7 @@ import StudentRegister from './auth/pages/StudentRegister';
 import TeacherRegister from './auth/pages/TeacherRegister';
 import AdminView from './AdminVisual/StudentDash/components/GraphReport'
 import StudentDashboard from './StudentDash/pages/StudentDash';
-import TeacherDashboard from './TeacherDashboard';
+//import TeacherDashboard from './TeacherDashboard';
 import App1 from './Flask/ui/src/index'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -71,6 +71,7 @@ function App() {
 					path='/admin/dashboard'
 					component={AdminView }
 				/>
+				
 			</Switch>
 		</div>
 	);

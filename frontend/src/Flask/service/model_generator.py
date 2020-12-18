@@ -25,6 +25,7 @@ X_train, X_test, y_train, y_test = train_test_split(X,
                                                     shuffle = True)
 
 # Build the classifier and make prediction
+#classifier=Logisticregression()
 classifier = DecisionTreeClassifier()
 classifier.fit(X_train, y_train)
 prediction = classifier.predict(X_test)
