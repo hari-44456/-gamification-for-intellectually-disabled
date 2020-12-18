@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
+import axios from 'axios';
+import { TokenContext } from '../../../context/TokenContext';
+import { useHistory } from 'react-router-dom';
 import {Line} from 'react-chartjs-2';
 import Pie from './pie';
 const data = {
@@ -29,9 +32,34 @@ const data = {
 };
 
 export default function StudentInfo(){
+  const [token, setToken] = useContext(TokenContext);
+	const history = useHistory();
+
+	useEffect(() => {
+		console.log('token at admin dashboard', token);
+
+		if (!token || token.type !== 'admin') history.push('/login/admin');
+	});
+
+	const handleLogout = () => {
+		axios({
+			method: 'get',
+			url: 'https://narahariapi.herokuapp.com/api/auth/admin/logout',
+			headers: {
+				'auth-token': token.tokenValue,
+			},
+		})
+			.then((res) => {
+				console.log(res);
+				setToken({ type: null, value: null });
+			})
+			.catch((err) => console.log(err));
+	};
+
     return (
         <React.Fragment>
              <h1>Admin Analysis</h1>
+             <button onClick={handleLogout} style={{float:'right',width:'10%',padding:0}} >LogOut</button>
             <h2>Line Graph for the Games</h2>
             <Line data={data} />
             <Pie/>

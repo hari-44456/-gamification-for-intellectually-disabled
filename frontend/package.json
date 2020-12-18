@@ -31,7 +31,10 @@
     "shuffle-array": "^1.0.1",
     "styled-components": "^4.4.1",
     "web-vitals": "^0.2.4",
-    "react-canvas-js": "^1.0.1"
+    "react-canvas-js": "^1.0.1",
+    "immutability-helper": "^2.1.1",
+    "keycode-js": "^0.0.4",
+    "recompose": "^0.23.5"
   },
   "scripts": {
     "start": "react-scripts start",

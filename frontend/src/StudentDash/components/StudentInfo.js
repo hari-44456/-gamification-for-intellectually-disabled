@@ -1,7 +1,9 @@
-import React from 'react';
+import React,{useEffect,useContext} from 'react';
 import {Row,Col} from 'react-bootstrap';
 import { Avatar, Card, makeStyles, Typography } from '@material-ui/core';
-
+import {useHistory} from 'react-router-dom';
+import axios from '../../axios';
+import {TokenContext} from '../../context/TokenContext';
 import PersonImage from '../../assets/img/person-outline.png';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,10 +15,37 @@ const useStyles = makeStyles((theme) => ({
 
 export default function StudentInfo(){
     const classes = useStyles();
+    const [token, setToken] = useContext(TokenContext);
+	const history = useHistory();
+
+	useEffect(() => {
+		console.log('token at student dashboard', token);
+
+		if (!token || token.type !== 'student') history.push('/login/student');
+	});
+
+	const handleLogout = () => {
+		axios({
+			method: 'get',
+			url: '/api/auth/student/logout',
+			headers: {
+				'auth-token': token.tokenValue,
+			},
+		})
+			.then((res) => {
+				console.log(res);
+				setToken({ type: null, value: null });
+			})
+			.catch((err) => console.log(err));
+	};
     return(
         <Card style={{padding:'10px'}}>
             <Row>
                 <Col align='center'>
+                    <div style={{display:'flex',flexDirection:'row-reverse'}}>
+                        <button onClick={handleLogout} style={{marginLeft:'15px',width:'20%',padding:0}} >LogOut</button>
+                        <button onClick={()=>history.push('/')} style={{ padding:0,width:'20%' }}>Play Games</button>
+                    </div>
                     <Avatar className={classes.large} src={PersonImage} alt='person-image'/>
                 </Col>
             </Row>
@@ -30,7 +59,7 @@ export default function StudentInfo(){
                         </Col>
                         <Col md={9}>
                             <Typography variant='h6'>
-                                Narahari Anandkumar Papshetwar
+                                Student Name
                             </Typography>
                         </Col>
                     </Row>
@@ -46,7 +75,7 @@ export default function StudentInfo(){
                         </Col>
                         <Col md={9}>
                             <Typography variant='h6'>
-                                2018BTECS00012
+                                Student Id
                             </Typography>
                         </Col>
                     </Row>

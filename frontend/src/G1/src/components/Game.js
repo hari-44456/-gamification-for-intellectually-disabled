@@ -13,7 +13,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Snackbar from 'material-ui/Snackbar';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import axios from 'axios';
+import axios from '../../../axios';
 
 class Game extends Component {
   constructor(props) {
@@ -187,7 +187,7 @@ class Game extends Component {
      
 
       if(checkGameOver) {
-        axios.post(' https://narahariapi.herokuapp.com/student/score',{g1:this.state.moves+1},{headers:{'auth-token':this.props.token.tokenValue}})
+        axios.post('/student/score',{g1:this.state.moves+1},{headers:{'auth-token':this.props.token.tokenValue}})
           .then(res=>console.log(res))
           .catch(err=>console.log(err))
       }

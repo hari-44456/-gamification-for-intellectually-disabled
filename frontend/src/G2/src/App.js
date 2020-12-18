@@ -4,7 +4,7 @@ import Textbox from './components/textbox';
 import Btnsubmit from './components/btn_submit';
 import Scoreboard from './components/score';
 import './index.css';
-import axios from 'axios'
+import axios from '../../axios'
 import {TokenContext} from '../../context/TokenContext';
 
 
@@ -94,7 +94,7 @@ const App = () => {
         else 
           g2=600/(trackSelection.length + 1);
 
-      axios.post('http://localhost:5000/student/score',{g2},{headers})
+      axios.post('/student/score',{g2},{headers})
         .then(res=>console.log(JSON.stringify(res)))
         .catch(err=>console.log(JSON.stringify(err)))
 

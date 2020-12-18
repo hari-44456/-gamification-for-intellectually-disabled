@@ -1,18 +1,16 @@
-import React, { Component, useContext } from 'react';
+import React, { Component } from 'react';
 import ImageView from './ImageView';
 import MemoryOfImage from './MemoryOfImage';
 import './Game.css';
 
 import 'font-awesome/css/font-awesome.min.css';
-import axios from 'axios';
-import {TokenContext} from '../../context/TokenContext';
-
-let [token,setToken]="";
+import axios from '../../axios';
 
 class Game extends Component {
   constructor(props) {
-    super(props);
+	super(props);
 //     bind all the methods
+	this.token = props;
     this.onImageClicked = this.onImageClicked.bind(this);
     this.Restart = this.Restart.bind(this);
     this.memoryOfImage= new MemoryOfImage();
@@ -106,12 +104,6 @@ class Game extends Component {
     this.startGame();
   }
 
-  // updateScore=(score)=>{
-  //   axios.post('http://localhost:5000/student/score',{g4:score},{headers:{'auth-token':token.tokenValue}})
-  //     .then(res=>console.log(res))
-  //     .catcj(rr=>console.log(rr))
-  // }
-
   render() {
     let ImageViews = this.getImageViews();
     let gameStatus = <div className='Game-status'>
@@ -122,7 +114,15 @@ class Game extends Component {
                     </div>;
 // once all image pair is found, display the message
     if (this.state.pairsMatched === this.memoryOfImage.total_Images) {
-      // this.updateScore(this.state.moves-1);
+	  // this.updateScore(this.state.moves-1);
+		const headers={
+			'auth-token':this.token.token.tokenValue
+		};
+		let g4=this.state.moves-1;
+		axios.post('/student/score',{g4},{headers})
+		.then(res=>console.log(JSON.stringify(res)))
+	  	.catch(err=>console.log(JSON.stringify(err)))
+  
       gameStatus = <div className='Game-complete'>
                     <div>GAME COMPLETE!&nbsp;&nbsp;&nbsp;&nbsp;</div>
                     <div>You used {this.state.moves-1} moves &nbsp;&nbsp;&nbsp;&nbsp;</div>

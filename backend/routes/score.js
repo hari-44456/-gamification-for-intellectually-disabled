@@ -2,11 +2,27 @@ const router = require('express').Router();
 const StudentScore = require('../models/StudentScore');
 const { verifyToken } = require('../verify');
 
+router.get('/',verifyToken, (req, res) => {
+	try {
+		StudentScore.findOne({ sid: req.uesr._id }, async (err, doc) => {
+			if (err) {
+				return res.status(400).send('Error: ' + err.message);
+			}
+			if (!doc) {
+				return res.status(400).send('student not found');
+			}
+			return res.status(400).send(doc);
+		})
+	} catch (err) {
+		return res.status(400).send('Error: ' + err.message);
+	}
+})
+
 router.post('/', verifyToken, async (req, res) => {
-	console.log(req.user._id)
+	// console.log(req.user._id)
 	try {
 		const { g1 = -1, g2 = -1, g3 = -1, g4 = -1 } = req.body;
-		console.log('From route ',req.user)
+		// console.log('From route ',req.user)
 
 		StudentScore.findOne({ sid:req.user._id }, async (err, doc) => {
 			if (err) return res.status(400).send('Error...');
@@ -58,7 +74,7 @@ router.post('/', verifyToken, async (req, res) => {
 					.status(200)
 					.send(`updated successfully...${JSON.stringify(result2)}`);
 			} catch (error) {
-				console.log('err');
+				// console.log('err');
 				return res.status(400).send(error);
 			}
 		});
