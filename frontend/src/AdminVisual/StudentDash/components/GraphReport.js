@@ -1,5 +1,6 @@
 import React, { useEffect, useState,useContext } from 'react';
 import axios from 'axios';
+import {Container,Row} from 'react-bootstrap'
 import { TokenContext } from '../../../context/TokenContext';
 import { useHistory } from 'react-router-dom';
 import {Line} from 'react-chartjs-2';
@@ -57,12 +58,15 @@ export default function StudentInfo(){
 	};
 
     return (
-        <React.Fragment>
-             <h1>Admin Analysis</h1>
-             <button onClick={handleLogout} style={{float:'right',width:'10%',padding:0}} >LogOut</button>
-            <h2>Line Graph for the Games</h2>
+        <div style={{marginLeft:'5%',marginRight:'5%'}} >
+        <Row style={{ display: 'flex', justifyContent: 'space-around' }} >
+          <h1>Admin Analysis</h1>
+          
+              <button onClick={handleLogout} style={{float:'right',width:'10%',padding:0}} >LogOut</button>
+        </Row>  
+          <h2>Line Graph for the Games</h2>
             <Line data={data} />
             <Pie/>
-        </React.Fragment>
+        </div>
     );
 };
