@@ -31,7 +31,7 @@ export default function StudentInfo({ labels,scores }){
 
     return (
         <React.Fragment>
-            <h2>Line Example</h2>
+            <h2>Line Graph Average Score </h2>
             <Line data={data} />
         </React.Fragment>
     );

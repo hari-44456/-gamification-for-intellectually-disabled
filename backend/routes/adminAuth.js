@@ -40,6 +40,7 @@ router.post('/register', verifyToken, verifyAdmin, (req, res) => {
 });
 
 router.post('/login', (req, res) => {
+	console.log(req.body);
 	if (!req.body.username || !req.body.password)
 		return res.status(400).send('Data Incomplete!!!');
 

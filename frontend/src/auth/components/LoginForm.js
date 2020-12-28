@@ -99,7 +99,7 @@ export default function LoginForm({ type }) {
 				history.push(`/${type}/dashboard`);
 			})
 			.catch((err) => {
-				setLoginError(JSON.stringify(err.response.data));
+				setLoginError(JSON.stringify(err.response));
 			});
 	};
 
