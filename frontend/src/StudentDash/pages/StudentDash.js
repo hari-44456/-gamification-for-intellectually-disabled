@@ -29,10 +29,20 @@ const getRows = (res) => {
     return scores;
 }
 
+const getUnique = (scores) => {
+    console.log(scores);
+    const newScores = [];
+    for (let i = 1; i < scores.length; i++)
+        if (scores[i].date != scores[i - 1].date)
+            newScores.push(scores[i]);
+    return newScores;
+}
+
 const getGraphData = (response) => {
     const tempDates = [], tempScores = [];
+    response.data.scores = getUnique(response.data.scores);
     var len = response.data.scores.length;
-    for (var i = 0; i < len && i < 20; i++){
+    for (var i = 0; i < len ; i++){
         let date = response.data.scores[i].date;
         let datearr = date.split('-');
         date = datearr[1]+'/'+datearr[2]+'/'+datearr[0];

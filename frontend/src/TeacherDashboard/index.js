@@ -15,13 +15,19 @@ const TeacherDashboard=()=>{
       const history = useHistory();
   
       useEffect(() => {
-          console.log('token at teacher  dashboard', token);
+        console.log('token at teacher  dashboard', token);
   
-          if (!token || token.type !== 'student') history.push('/login/student');
+        if (!token || token.type !== 'teacher')
+          history.push('/login/teacher');
       });
-  
-      return (
+  const handleLogOut = () => {
+    setToken({ type: null, value: null });
+  }
+  return (
+    <>
+      <button onClick={handleLogOut} >LogOut</button>
         <App/>
-      );
+      
+      </>);
   }
   export default TeacherDashboard;
