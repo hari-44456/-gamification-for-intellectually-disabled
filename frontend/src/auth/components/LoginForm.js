@@ -13,7 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import LoginValidator from '../utils/LoginValidator';
 import { TokenContext } from '../../context/TokenContext';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import axios from 'axios';
+import axios from '../../axios';
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -90,7 +90,7 @@ export default function LoginForm({ type }) {
 		
 		axios
 			.post(
-				`https://narahariapi.herokuapp.com/api/auth/${type}/login`,
+				`/api/auth/${type}/login`,
 				data,
 			)
 			.then((res) => {
@@ -99,7 +99,7 @@ export default function LoginForm({ type }) {
 				history.push(`/${type}/dashboard`);
 			})
 			.catch((err) => {
-				setLoginError(JSON.stringify(err.response.data));
+				setLoginError(JSON.stringify(err.response));
 			});
 	};
 
@@ -173,7 +173,7 @@ export default function LoginForm({ type }) {
 					color='error'
 					variant='subtitle2'
 					className={classes.forgotPassword}>
-					<b>Forgot Password?</b>
+					{/* <b>Forgot Password?</b> */}
 				</Typography>
 				<Button
 					className={[classes.button, classes.style].join(' ')}

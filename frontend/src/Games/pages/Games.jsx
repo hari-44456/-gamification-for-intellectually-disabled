@@ -16,12 +16,12 @@ const Games = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		if (!token.tokenValue) history.push('/login/student');
+		if (!token || !token.tokenValue) history.push('/login/student');
 	});
 
 	return (
 		<React.Fragment>
-			<Typography variant='h2'>Student Dashboard</Typography>
+			<Typography variant='h2'>Games</Typography>
 			<Container>
 				<Row>
 					<Col md={6} align='center'>

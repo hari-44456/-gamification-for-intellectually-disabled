@@ -1,36 +1,46 @@
 import React from 'react';
-import Games from './Games/pages/Games';
-import G4 from './G4/src/index';
-import './index.css';
-import MuiTheme from './G1/src/index';
-import Index from './G2/src/index';
 import { Route, Switch } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+
+import './index.css';
+
+import Games from './Games/pages/Games';
+import G1 from './G1/src/index';
+import G2 from './G2/src/index';
 import G3 from './G3/src/index';
+import G4 from './G4/src/index';
+import TeacherDashboard from './TeacherDashboard/index'
 import StudentLogin from './auth/pages/StudentLogin';
 import AdminLogin from './auth/pages/AdminLogin';
 import TeacherLogin from './auth/pages/TeacherLogin';
 import StudentRegister from './auth/pages/StudentRegister';
 import TeacherRegister from './auth/pages/TeacherRegister';
-import StudentDash from './StudentDash/pages/StudentDash';
 import AdminView from './AdminVisual/StudentDash/components/GraphReport'
-import StudentDashboard from './StudentDashboard';
-import AdminDashboard from './AdminDashboard';
-import TeacherDashboard from './TeacherDashboard';
+import StudentDashboard from './StudentDash/pages/StudentDash';
+//import TeacherDashboard from './TeacherDashboard';
 import App1 from './Flask/ui/src/index'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
+const useStyles = makeStyles((theme) => ({
+    wrapper: {
+        margin: theme.spacing(0, 2, 0, 2),
+    }
+}));
+
 function App() {
+	const styles = useStyles();
 	return (
-		<div className='App'>
+		<div className={['App', styles.wrapper].join(' ')}>
 			<Switch>
-					<Route exact path="/"  component={Games}/>
-					<Route path="/G1" component={MuiTheme} />
-					<Route path="/G2" component={Index}/>
-					<Route path="/G4" component={G4}/>
-					<Route path="/G3" component={G3}/>
-					<Route exact path='/login/student/' component={StudentLogin} />
-					<Route exact path='/login/teacher/' component={TeacherLogin} />
-					<Route exact path='/login/admin/' component={AdminLogin} />
+				<Route exact path="/"  component={Games}/>
+				<Route path="/G1" component={G1} />
+				<Route path="/G2" component={G2}/>
+				<Route path="/G4" component={G4}/>
+				<Route path="/G3" component={G3}/>
+				
+				<Route exact path='/login/student' component={StudentLogin} />
+				<Route exact path='/login/teacher' component={TeacherLogin} />
+				<Route exact path='/login/admin' component={AdminLogin} />
 
 				<Route
 					exact
@@ -50,11 +60,7 @@ function App() {
 					component={TeacherDashboard}
 				/>
 
-				<Route
-					exact
-					path='/admin/dashboard'
-					component={AdminDashboard}
-				/>
+				
 				<Route
 					exact
 					path='/model'
@@ -62,9 +68,10 @@ function App() {
 				/>
 				<Route
 					exact
-					path='/adminview'
+					path='/admin/dashboard'
 					component={AdminView }
 				/>
+				
 			</Switch>
 		</div>
 	);

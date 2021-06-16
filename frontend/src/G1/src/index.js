@@ -4,13 +4,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {TokenContext} from '../../context/TokenContext';
 import {useHistory} from 'react-router-dom';
 
-// Needed for onClick
-// http://stackoverflow.com/a/34015469/988941
-
-
 const MuiTheme = () => {
 
-  const [token, setToken] = useContext(TokenContext);
+  const [token] = useContext(TokenContext);
 	const history = useHistory();
 
 	useEffect(() => {
@@ -25,5 +21,4 @@ const MuiTheme = () => {
   </MuiThemeProvider>
 )}
 
-//ReactDOM.render(<MuiTheme />, document.getElementById('root'));
 export default MuiTheme;
