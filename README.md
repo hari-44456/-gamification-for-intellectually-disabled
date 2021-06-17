@@ -14,7 +14,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start` 
+### `How to Run Application ?` 
 - cd frontend
 - npm i
 - npm start
